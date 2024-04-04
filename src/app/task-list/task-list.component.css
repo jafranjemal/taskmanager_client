@@ -1,0 +1,22 @@
+.mat-column-Id {
+    width: 30px;   
+    text-align: left;
+  }
+.mat-column-Title{
+    width: 200px;
+}
+.mat-column-Description{
+    width: 600px;
+}
+.mat-column-DueDate{
+    width: 100px;
+}
+
+.action-cell {
+    width: 120px; 
+  }
+  
+  .hover-row:hover {
+    cursor: pointer;
+  }
+  

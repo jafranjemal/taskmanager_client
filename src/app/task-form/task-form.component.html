@@ -1,0 +1,54 @@
+
+
+<form class="create_task__form" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+   
+    <h2>{{isEditMode ? 'Edit': 'Create New'}}  Task <span *ngIf="isEditMode">({{editedTaskId}})</span></h2>
+    <div class="form-container">
+        <div class="form-fields">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" >
+                <mat-error *ngIf="taskForm.get('title')?.invalid && (taskForm.get('title')?.dirty || taskForm.get('title')?.touched)">
+                  <span *ngIf="taskForm.get('title')?.errors?.['required']">Title is required.</span>
+                  <span *ngIf="taskForm.get('title')?.errors?.['minlength']">Title must be at least 5 characters long.</span>
+                  <span *ngIf="taskForm.get('title')?.errors?.['maxlength']">Title cannot exceed 200 characters.</span>
+                </mat-error>
+             
+              </mat-form-field>
+            
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea rows="9" matInput formControlName="description" ></textarea>
+                <mat-error *ngIf="taskForm.get('description')?.invalid && (taskForm.get('description')?.dirty || taskForm.get('description')?.touched)">
+                  <span *ngIf="taskForm.get('description')?.errors?.['required']">description is required.</span>
+                  <span *ngIf="taskForm.get('description')?.errors?.['minlength']">description must be at least 10 characters long.</span>
+                  <span *ngIf="taskForm.get('description')?.errors?.['maxlength']">description cannot exceed 500 characters.</span>
+                </mat-error>
+              </mat-form-field>
+            
+              <!-- <mat-form-field>
+                <mat-label>Due Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dueDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+               
+              </mat-form-field> -->
+          
+        </div>
+        <div class="form-calender">
+            <h3>Due Date</h3>
+            <mat-card class="demo-inline-calendar-card">                
+                <mat-calendar #calendar   [selected]="getDueDateValue()" (selectedChange)="updateFormDate($event)"></mat-calendar>
+                <mat-error *ngIf="taskForm.get('dueDate')?.invalid && taskForm.get('dueDate')?.touched">
+                    Due Date is required
+                </mat-error>
+            </mat-card>
+              
+ 
+              
+        </div>
+    </div>
+   
+    <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">{{isEditMode ? 'Update': 'Save'}}</button>
+  </form>
+  

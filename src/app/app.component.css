@@ -1,0 +1,30 @@
+.navbar{
+    justify-content: space-between;
+}
+.navbar__menu{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+}
+.navbar > div > span{
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+body{
+    background: #607d8b !important;
+}
+ 

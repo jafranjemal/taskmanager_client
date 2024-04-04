@@ -1,0 +1,31 @@
+.create_task__form {
+  max-width: 1200px;
+  
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.form-container {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  max-width: 1000px;
+}
+
+.form-fields {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-right: 15px;
+}
+.form-calender {
+  width: 220px;
+  padding: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

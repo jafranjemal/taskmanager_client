@@ -1,0 +1,72 @@
+<mat-form-field>
+  <mat-label>Search Task</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ex. First task.."
+    #input
+  />
+</mat-form-field>
+
+<div *ngIf="isLoading">Loading...</div>
+<div  class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row" (click)="viewTask(row.Id)">
+        {{ row.Id }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let row" (click)="viewTask(row.Id)">
+        {{ row.Title }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let row" (click)="viewTask(row.Id)">
+        {{ row.Description }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DueDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>DueDate</th>
+      <td mat-cell *matCellDef="let row" (click)="viewTask(row.Id)">
+        {{ row.DueDate | date : "dd/MM/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td class="action-cell" mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="editTask(row.Id)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteTask(row.Id)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      class="hover-row"
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Please wait..."</td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of tasks"
+  ></mat-paginator>
+</div>
